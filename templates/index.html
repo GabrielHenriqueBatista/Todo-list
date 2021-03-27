@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Todo List<h1>
+      <form action="/create" method="POST">
+        <input name="title" placeholder="O que fazer?">
+        <button type="submit">
+          <img src="{{ url_for('static', filename='images/icons/add.png') }}"/>
+        </button>
+      </form>
+      <hr>
+      <ul>
+        {% for todo in todos %}
+          <li>
+            <form action="/update/{{ todo[0] }}" method="POST">
+              <input 
+                type="text" 
+                value="{{ todo[1] }}" 
+                name="title"
+                class="{{ 'completed' if todo[2] else ''}}"
+              >
+              <button type="submit">
+                <img src="{{ url_for('static', filename='images/icons/edit.png') }}"/>
+              </button>
+            </form>
+
+            <div class="actions">
+               {% if todo[2] == 0 %}
+              <a href="/complete/{{ todo[0] }}">
+                <img src="{{ url_for('static', filename='images/icons/check.png') }}"/>
+              </a>
+              {% endif %}
+
+              <a href="/delete/{{ todo[0] }}">
+                <img src="{{ url_for('static', filename='images/icons/remove.png') }}"/>
+              </a>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+  </div>
+</body>
+</html>

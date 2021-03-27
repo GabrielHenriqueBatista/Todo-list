@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Login<h1>
+    <hr>
+    <form action="/login" method="POST">
+      <input type="email" name="email" placeholder="E-mail">
+      <br>
+      <input type="password" name="password" placeholder="Senha">
+      <hr>
+      <button type="submit">
+        <img src="{{ url_for('static', filename='images/icons/check.png') }}"/>
+      </button>
+    </form>
+    <a href="/signup">Registrar</a>
+  </div>
+</body>
+</html>
